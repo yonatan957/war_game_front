@@ -11,7 +11,7 @@ export default function AttackD({attack}:Props) {
     const [activeIntercptors, setActiveIntercptors] = useState<string[]>(((): string[]=>{
         const intercepts:string[] = []
         user?.resources.forEach((resource) => {
-            if(attack.intercepts.includes(resource.name)){
+            if(missles.find(missle => missle.name == resource.name)?.intercepts.includes(attack.name)){
                 intercepts.push(resource.name)
             }
         })
@@ -28,7 +28,7 @@ export default function AttackD({attack}:Props) {
     <div>
       <h3>{attack.name}</h3>
       {!attack.id_intercepted && <h4>Time to hit:{attack.tymeToHit}</h4>}
-      {attack.id_intercepted && attack.id_intercepted == user?._id ? <h4>Intercepted by you</h4> : <h4>Intercepted by {attack.intercepts}</h4>}   
+      {attack.id_intercepted && attack.id_intercepted == user?._id ? <h4>Intercepted by you</h4> : <h4>Intercepted by {attack.id_intercepted}</h4>}   
       {activeIntercptors.map((interceptor) => (<button key={interceptor}>Lounch {interceptor}</button>))}   
     </div>
   )
