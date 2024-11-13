@@ -1,3 +1,4 @@
+import { IAttack } from "./attack";
 import { IUser } from "./user";
 
 export enum DataStatus {
@@ -13,3 +14,8 @@ export interface userState {
     user: null | IUser;
 }
 
+export interface attacksState {
+    error: string | null;
+    status: DataStatus;
+    attacks: IAttack[];
+}
