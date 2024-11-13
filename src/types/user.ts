@@ -9,4 +9,5 @@ export interface IUser{
         amount: number;
     }[];
     budget: number;
+    attacker:boolean;
 }
