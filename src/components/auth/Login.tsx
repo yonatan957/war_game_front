@@ -1,6 +1,7 @@
 import  { useState } from 'react'
 import { useAppDispatch } from '../../redux/store'
 import { fetchLogin } from '../../redux/slices/userSlice'
+import './auth.css'
 
 export default function Login() {
   const [userName, setUserName]= useState('');
