@@ -11,7 +11,7 @@ const initialState: userState = {
 export const fetchLogin = createAsyncThunk('user/login',
     async (userData: { userName: string, password: string, }, thunkApi) => {
         try {
-            const res = await fetch(import.meta.env.VITE_API_URL + '/users/login', {
+            const res = await fetch('http://localhost:3030/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,6 +20,7 @@ export const fetchLogin = createAsyncThunk('user/login',
             });
             if (!res.ok) {
                 thunkApi.rejectWithValue("can't login, please try again");
+                return
             }
             const data = await res.json();
             thunkApi.fulfillWithValue(data);
