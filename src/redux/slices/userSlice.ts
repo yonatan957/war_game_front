@@ -1,4 +1,4 @@
-import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DataStatus, userState } from "../../types/redux";
 import { IUser } from "../../types/user";
 
@@ -35,7 +35,11 @@ export const fetchLogin = createAsyncThunk('user/login',
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers: {},
+    reducers: {
+        decrese:(state, action:PayloadAction<string>)=>{
+            state.user!.resources.find((resource) => resource.name == action.payload)!.amount--
+        }
+    },
     extraReducers: (builder:ActionReducerMapBuilder<userState>) => {
         builder.addCase(fetchLogin.pending, (state) => {
             state.status = DataStatus.LOADING;
