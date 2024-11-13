@@ -9,6 +9,9 @@ function App() {
   const { user } = useAppSelector((state: RootState) => state.user);
   return (
     <div className="app">
+      <div>
+        {JSON.stringify(user)}
+      </div>
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
