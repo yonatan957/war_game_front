@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { decrese, useAppDispatch, useAppSelector } from '../../../redux/store';
 import AttackA from './AttackA';
 import { socket } from '../../../main';
+import { fetchAttacks } from '../../../redux/slices/AttacksSlice';
 
 export default function AttackSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
@@ -13,6 +14,11 @@ export default function AttackSide() {
       return user?.resources.filter((resource) => resource.amount > 0).map((resource) => resource.name) || []
     })
   },[user?.resources])
+  useEffect(()=>{
+    const token = localStorage.getItem('Atoken');
+    if(!token) return
+    dispatch(fetchAttacks({token, url: 'myAttacks'} ))
+  },[])
   const lounchMissle = (missle:string) =>{
     const token = localStorage.getItem('Atoken');
     if(!token) return

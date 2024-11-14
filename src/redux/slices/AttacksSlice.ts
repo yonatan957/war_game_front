@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { attacksState, DataStatus } from "../../types/redux";
 import { IAttack } from "../../types/attack";
 
@@ -7,6 +7,29 @@ const initialState: attacksState = {
   status: DataStatus.IDLE,
   attacks: [],
 };
+
+export const fetchAttacks = createAsyncThunk('attack/load',
+  async (Data: { token: string, url: string, }, thunkApi) => {
+      try {
+          const res = await fetch('http://localhost:3030/attacks/' + Data.url, {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': Data.token
+              },
+          });
+          if (!res.ok) {
+              thunkApi.rejectWithValue("can't login, please try again");
+              return
+          }
+          const data = await res.json();
+          thunkApi.fulfillWithValue(data);
+          return data
+      } catch (error) {
+          thunkApi.rejectWithValue(error instanceof Error ? error.message : "Unknown error occurred");
+      }
+  }
+);
 
 const attacksSlice = createSlice({
   name: "attacks",
@@ -36,6 +59,23 @@ const attacksSlice = createSlice({
         attack.tymeToHit = 0;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAttacks.pending, (state) => {
+      state.status = DataStatus.LOADING;
+      state.error = null;
+      state.attacks = [];
+  })
+  .addCase(fetchAttacks.fulfilled, (state, action) => {
+      state.status = DataStatus.SUCCESS;
+      state.error = null;
+      state.attacks = action.payload as IAttack[] || [];
+  })
+  .addCase(fetchAttacks.rejected, (state, action) => {
+      state.status = DataStatus.FAILED;
+      state.error = action.payload as string;
+      state.attacks = [];
+  })
   },
 });
 
