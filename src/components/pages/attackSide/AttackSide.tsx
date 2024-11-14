@@ -14,8 +14,8 @@ export default function AttackSide() {
     })
   },[user?.resources])
   const lounchMissle = (missle:string) =>{
-    console.log(missle)
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('Atoken');
+    if(!token) return
     const attack = {name: missle, id_attacker: user!._id};
     socket.emit("launch", {attack, token})
     dispatch(decrese(missle))

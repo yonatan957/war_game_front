@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { fetchLogin } from '../../redux/slices/userSlice'
 import './auth.css'
 import { useNavigate } from 'react-router-dom';
+import { socket } from '../../main';
 
 export default function Login() {
   const [userName, setUserName]= useState('');
@@ -10,6 +11,9 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state=>state.user.user);
   const navigate = useNavigate();
+  const log = ()=>{
+    dispatch(fetchLogin({userName, password}))
+  }
   useEffect(() => {
     if(user){
       navigate('/game')
@@ -19,7 +23,7 @@ export default function Login() {
     <div className='page'>
       <input type="text" placeholder='user name' onChange={(e)=>{setUserName(e.target.value)}} value={userName} />
       <input type="password" placeholder='password'  onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
-      <button onClick={()=>{dispatch(fetchLogin({userName, password}))}}>Login</button>
+      <button onClick={log}>Login</button>
     </div>
   )
 }
