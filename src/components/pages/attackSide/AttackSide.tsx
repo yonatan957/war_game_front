@@ -5,6 +5,7 @@ import { socket } from '../../../main';
 import { fetchAttacks } from '../../../redux/slices/AttacksSlice';
 import '../pages.css';
 import organizationsEnum from '../../../types/organizationsEnum';
+import { useNavigate } from 'react-router-dom';
 
 export default function AttackSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
@@ -12,6 +13,7 @@ export default function AttackSide() {
   const [activeMissles, setActiveMissles] =  useState<string[]>([]);
   const [organization, setOrganization]= useState<organizationsEnum>(organizationsEnum.IDF_Center);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     setActiveMissles(()=>{
       return user?.resources.filter((resource) => resource.amount > 0).map((resource) => resource.name) || []
@@ -56,6 +58,7 @@ export default function AttackSide() {
             <AttackA attack={attack} key={attack._id}/>
         ))}
       </div>
+      <button onClick={()=>{navigate('/shop')}}>don't have enough weapons ? Shop</button>
     </div>
   )
 }

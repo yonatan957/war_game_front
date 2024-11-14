@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../redux/store';
+import { decrese, useAppDispatch, useAppSelector } from '../../../redux/store';
 import { IAttack } from '../../../types/attack'
 import missles from '../missiles.json'
 import { socket } from '../../../main';
@@ -10,6 +10,7 @@ interface Props {
 }
 export default function AttackD({attack}:Props) {
     const user = useAppSelector((state) => state.user.user);
+    const dispatch = useAppDispatch();
     const fill = (): string[]=>{
         const interceports:string[] = []
         user?.resources.forEach((resource) => {
@@ -23,7 +24,8 @@ export default function AttackD({attack}:Props) {
     const intercept = (interceptor: string) =>{        
         const token = localStorage.getItem('Dtoken');
         if(!token) return
-        socket.emit("intercept", {interceptor, token, attack:  attack._id, time: attack.tymeToHit})        
+        socket.emit("intercept", {interceptor, token, attack:  attack._id, time: attack.tymeToHit})
+        dispatch(decrese(interceptor))
     }
     const [activeIntercptors, setActiveIntercptors] = useState<string[]>(fill()); 
     useEffect(() => {        
