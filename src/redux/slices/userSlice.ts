@@ -1,6 +1,7 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DataStatus, userState } from "../../types/redux";
 import { IUser } from "../../types/user";
+import { socket } from "../../main";
 
 const initialState: userState = {
     error: null,
@@ -24,7 +25,8 @@ export const fetchLogin = createAsyncThunk('user/login',
             }
             const data = await res.json();
             thunkApi.fulfillWithValue(data);
-            localStorage.setItem('token', data.token)
+            data.attacker? localStorage.setItem('Atoken', data.token): localStorage.setItem('Dtoken', data.token)
+            socket.emit("goToRoom", {room:data.organization})
             return data
         } catch (error) {
             thunkApi.rejectWithValue(error instanceof Error ? error.message : "Unknown error occurred");
