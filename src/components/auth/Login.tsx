@@ -9,16 +9,16 @@ export default function Login() {
   const [userName, setUserName]= useState('');
   const [password, setPassword]= useState('');
   const dispatch = useAppDispatch();
-  const user = useAppSelector(state=>state.user.user);
+  const user = useAppSelector(state=>state.user);
   const navigate = useNavigate();
   const log = ()=>{
     dispatch(fetchLogin({userName, password}))
   }
   useEffect(() => {
-    if(user){
+    if(user.user){
       navigate('/game')
     }
-  })
+  },[user])
   return (
     <>
       <div className='authpage'>
