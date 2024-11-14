@@ -55,6 +55,9 @@ const attacksSlice = createSlice({
         attack.intercepted = action.payload.intercepted;
         attack.tymeToHit = 0;
       }
+    },    
+    initAttack: (state) => {
+      state.attacks = [];
     },
   },
   extraReducers: (builder) => {

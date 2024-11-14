@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { initUser, RootState, useAppDispatch, useAppSelector } from '../../redux/store'
+import { initAttack, initUser, RootState, useAppDispatch, useAppSelector } from '../../redux/store'
 
 export default function NavBar() {
     const user = useAppSelector((state:RootState)=>state.user.user)
@@ -7,6 +7,7 @@ export default function NavBar() {
     const logout = ()=>{
       localStorage.removeItem("token")
       dispatch(initUser())
+      dispatch(initAttack())
     }
   return (
     <div className='nav'>
