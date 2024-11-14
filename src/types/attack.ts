@@ -4,4 +4,5 @@ export interface IAttack {
     tymeToHit: number;
     id_attacker: string;
     id_intercepted?: string;
+    intercepted: boolean;
 }
