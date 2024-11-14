@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"
 import { IAttack } from "../../../types/attack"
 import { socket } from "../../../main"
-import { useAppSelector } from "../../../redux/store";
 import '../pages.css';
-import organizationsEnum from "../../../types/organizationsEnum";
 
 interface props{
     attack: IAttack

@@ -3,14 +3,12 @@ import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import AttackD from "./AttackD";
 import { fetchAttacks } from "../../../redux/slices/AttacksSlice";
 import '../pages.css';
-import { useNavigate } from "react-router-dom";
 
 
 export default function DefenceSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch()
-  const navigate = useNavigate();
   useEffect(()=>{
     const token = localStorage.getItem('Dtoken');
     if(!token) return
@@ -32,7 +30,6 @@ export default function DefenceSide() {
           <AttackD attack={attack} key={attack._id}/>
         ))}
       </div>
-      <button onClick={()=>{navigate('/shop')}}>don't have enough weapons ? Shop</button>
     </div>
   );
 }
