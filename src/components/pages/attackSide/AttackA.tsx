@@ -18,10 +18,10 @@ export default function AttackA({attack}:props) {
     }
   },[attack])
   return (
-    <div className='card cardA'>
+    <div className='card cardA' style={{backgroundColor: attack.intercepted ? 'red' : 'green'}}>
       <h3>{attack.name}</h3>
-      {!attack.intercepted && <h4>Time to hit:{attack.tymeToHit}</h4>}
-      {!!attack.id_intercepted && <p>Intercepted by {attack.id_intercepted}</p>}
+      {!attack.intercepted && (attack.tymeToHit !==0?<h4>Time to hit:{attack.tymeToHit}</h4>:<h4>Exploded</h4>)}
+      {attack.intercepted && <p>Intercepted by {attack.id_intercepted}</p>}
     </div>
   )
 }

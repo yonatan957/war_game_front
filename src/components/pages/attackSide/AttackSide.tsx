@@ -42,8 +42,10 @@ export default function AttackSide() {
         {activeMissles.map((missle) => (
           <button key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>
         ))}
+      </div>
+      <div className='attacks'>
         {attackes.filter(attack => attack.id_attacker == user?._id).map((attack) => (
-          <AttackA attack={attack} key={attack._id}/>
+            <AttackA attack={attack} key={attack._id}/>
         ))}
       </div>
     </div>
