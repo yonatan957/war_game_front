@@ -14,6 +14,8 @@ import DefenceSide from "./components/pages/defenceSide/DefenceSide";
 import { useEffect } from "react";
 import { socket } from "./main";
 import { IAttack } from "./types/attack";
+import Shop from "./components/pages/Shop";
+import NavBar from "./components/pages/NavBar";
 
 function App() {
   const { user } = useAppSelector((state: RootState) => state.user);
@@ -52,11 +54,13 @@ function App() {
   }, [attacks, dispatch]);
   return (
     <div className="app">
+      <NavBar />
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/" element={<Navigate to={"/login"} />} />
         <Route path="/game" element={user? (user.attacker ? <AttackSide /> : <DefenceSide/>): <Navigate to={'/login'} />}/>
+        <Route path="/shop" element={user? <Shop/>: <Navigate to={'/login'} />}/>
       </Routes>
     </div>
   );
