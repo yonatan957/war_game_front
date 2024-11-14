@@ -4,14 +4,15 @@ import AttackD from "./AttackD";
 import { fetchAttacks } from "../../../redux/slices/AttacksSlice";
 import '../pages.css';
 
+
 export default function DefenceSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
   const user = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch()
   useEffect(()=>{
-    const token = localStorage.getItem('Atoken');
+    const token = localStorage.getItem('Dtoken');
     if(!token) return
-    dispatch(fetchAttacks({token, url: 'myAttacks'} ))
+    dispatch(fetchAttacks({token, url: 'myThrets'} ))
   },[])
   return (
     <div className='page defenceSide'>

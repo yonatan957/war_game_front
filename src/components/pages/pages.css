@@ -19,4 +19,6 @@ label{
     border: 1px solid black;
     padding: 10px;
     border-radius: 5px;
+    background-color: rgb(2, 136, 24);
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
 }

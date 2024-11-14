@@ -4,11 +4,13 @@ import AttackA from './AttackA';
 import { socket } from '../../../main';
 import { fetchAttacks } from '../../../redux/slices/AttacksSlice';
 import '../pages.css';
+import organizationsEnum from '../../../types/organizationsEnum';
 
 export default function AttackSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
   const user = useAppSelector((state) => state.user.user);
   const [activeMissles, setActiveMissles] =  useState<string[]>([]);
+  const [organization, setOrganization]= useState<organizationsEnum>(organizationsEnum.IDF_Center);
   const dispatch = useAppDispatch();
   useEffect(() => {
     setActiveMissles(()=>{
@@ -24,7 +26,7 @@ export default function AttackSide() {
     const token = localStorage.getItem('Atoken');
     if(!token) return
     const attack = {name: missle, id_attacker: user!._id};
-    socket.emit("launch", {attack, token})
+    socket.emit("launch", {attack, token, location:organization})
     dispatch(decrese(missle))
   }
   return (
@@ -38,6 +40,12 @@ export default function AttackSide() {
           </label>
         ))}
       </div>
+      <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
+            <option value={organizationsEnum.IDF_Center}>{organizationsEnum.IDF_Center}</option>
+            <option value={organizationsEnum.IDF_North}>{organizationsEnum.IDF_North}</option>
+            <option value={organizationsEnum.IDF_South}>{organizationsEnum.IDF_South}</option>
+            <option value={organizationsEnum.IDF_West_Bank}>{organizationsEnum.IDF_West_Bank}</option>
+      </select>
       <div>
         {activeMissles.map((missle) => (
           <button key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>
