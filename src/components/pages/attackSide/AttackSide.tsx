@@ -49,7 +49,7 @@ export default function AttackSide() {
       </select>
       <div className="resurces">
         {activeMissles.map((missle) => (
-          <button key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>
+          <button className='myButtons' key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>
         ))}
       </div>
       </div>

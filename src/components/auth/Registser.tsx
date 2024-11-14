@@ -57,9 +57,9 @@ export default function Register() {
             <option value={organizationsEnum.IDF_South}>{organizationsEnum.IDF_South}</option>
             <option value={organizationsEnum.IDF_West_Bank}>{organizationsEnum.IDF_West_Bank}</option>
           </select>}
-        <button onClick={send}>Register</button>
+        <button className='myButtons' onClick={send}>Register</button>
       </div>
-      <button className='transfer' onClick={()=>{navigate('/login')}}>Already have an account ? Login</button>
+      <button className='transfer myButtons' onClick={()=>{navigate('/login')}}>Already have an account ? Login</button>
     </>
   )
 }

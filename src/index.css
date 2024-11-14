@@ -16,7 +16,7 @@
 .app{
   width: 100vw;
   height: 100vh;
-  background-color: rgb(251, 222, 183);
+  background-color: rgb(255, 255, 255);
 }
 .nav{
   width: 100%;
@@ -38,4 +38,17 @@
 .nav > a.active{
   color: black;
   font-weight: bold;
+}
+.myButtons{
+  background-color: rgb(72, 72, 219);
+  border-radius: 10px;
+  transition: transform 0.2s; 
+  color: aliceblue;
+}
+.myButtons:hover{
+  transform: scale(1.2); 
+  left: 30px;
+  bottom: 13px;
+  background-color: rgb(202, 202, 245); 
+  color: black;
 }

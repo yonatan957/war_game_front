@@ -14,7 +14,7 @@ export default function NavBar() {
         <>
             <NavLink to={'/shop'}>Shop</NavLink>
             <NavLink to={'/game'}>Game</NavLink>
-            <button onClick={logout}>log out</button>
+            <button className='myButtons' onClick={logout}>log out</button>
         </>:<>
             <NavLink to={'/login'}>login</NavLink>
             <NavLink to={'/register'}>register</NavLink>

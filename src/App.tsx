@@ -21,6 +21,8 @@ function App() {
   const { user } = useAppSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch();
   const attacks = useAppSelector((state) => state.attacks.attacks);
+  
+  //for listening to socket
   useEffect(() => {
     socket.on("launched", (data: IAttack) => {
       dispatch(addAttack(data));
@@ -38,6 +40,7 @@ function App() {
     };
   }, []);
 
+  //for update time left in active attacks
   useEffect(() => {
     const interval = setInterval(() => {
       attacks
