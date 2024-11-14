@@ -21,7 +21,7 @@ export default function Login() {
   })
   return (
     <>
-      <div className='page'>
+      <div className='authpage'>
         <input type="text" placeholder='user name' onChange={(e)=>{setUserName(e.target.value)}} value={userName} />
         <input type="password" placeholder='password'  onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
         <button onClick={log}>Login</button>

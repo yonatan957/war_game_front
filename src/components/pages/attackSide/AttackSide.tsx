@@ -3,6 +3,7 @@ import { decrese, useAppDispatch, useAppSelector } from '../../../redux/store';
 import AttackA from './AttackA';
 import { socket } from '../../../main';
 import { fetchAttacks } from '../../../redux/slices/AttacksSlice';
+import '../pages.css';
 
 export default function AttackSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
@@ -27,14 +28,16 @@ export default function AttackSide() {
     dispatch(decrese(missle))
   }
   return (
-    <div>
+    <div className='page attackSide' >
       <h1>Attack Side</h1>
-      {user?.resources.map((resource) => (
-          <div key={resource.name}>
-            <p>{resource.name}</p>
-            <p>{resource.amount}</p>
-          </div>
+      <div>
+        {user?.resources.map((resource) => (
+          <label key={resource.name}>
+            {resource.name}:
+            {resource.amount}
+          </label>
         ))}
+      </div>
       <div>
         {activeMissles.map((missle) => (
           <button key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>

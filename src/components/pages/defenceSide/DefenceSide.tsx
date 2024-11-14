@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import AttackD from "./AttackD";
 import { fetchAttacks } from "../../../redux/slices/AttacksSlice";
+import '../pages.css';
 
 export default function DefenceSide() {
   const attackes = useAppSelector((state) => state.attacks.attacks);
@@ -13,19 +14,21 @@ export default function DefenceSide() {
     dispatch(fetchAttacks({token, url: 'myAttacks'} ))
   },[])
   return (
-    <div>
+    <div className='page defenceSide'>
       <h1>Defence Side</h1>
       <div>
         {user?.resources.map((resource) => (
-          <div key={resource.name}>
-            <p>{resource.name}</p>
-            <p>{resource.amount}</p>
-          </div>
+          <label key={resource.name}>
+            {resource.name}:
+            {resource.amount}
+          </label>
         ))}
       </div>
-      {attackes.map((attack) => (
-        <AttackD attack={attack} key={attack._id}/>
-      ))}
+      <div className="attacks">
+        {attackes.map((attack) => (
+          <AttackD attack={attack} key={attack._id}/>
+        ))}
+      </div>
     </div>
   );
 }

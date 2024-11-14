@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { IAttack } from "../../../types/attack"
 import { socket } from "../../../main"
 import { useAppSelector } from "../../../redux/store";
+import '../pages.css';
 
 interface props{
     attack: IAttack
@@ -17,7 +18,7 @@ export default function AttackA({attack}:props) {
     }
   },[attack])
   return (
-    <div>
+    <div className='card cardA'>
       <h3>{attack.name}</h3>
       {!attack.intercepted && <h4>Time to hit:{attack.tymeToHit}</h4>}
       {!!attack.id_intercepted && <p>Intercepted by {attack.id_intercepted}</p>}

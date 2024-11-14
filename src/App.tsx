@@ -52,17 +52,11 @@ function App() {
   }, [attacks, dispatch]);
   return (
     <div className="app">
-      <div>{JSON.stringify(user)}</div>
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="/" element={<Navigate to={"/login"} />} />
-        {user && (
-          <Route
-            path="/game"
-            element={user.attacker ? <AttackSide /> : <DefenceSide />}
-          />
-        )}
+        <Route path="/game" element={user? (user.attacker ? <AttackSide /> : <DefenceSide/>): <Navigate to={'/login'} />}/>
       </Routes>
     </div>
   );
