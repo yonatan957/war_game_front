@@ -40,23 +40,26 @@ export default function Register() {
   }
 
   return (
-    <div className='page'>
-      <input type="text" placeholder='user name' onChange={(e)=>{setUserName(e.target.value)}} value={userName} />
-      <input type="password" placeholder='password'  onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
-      <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
-        <option value={organizationsEnum.Hamas}>{organizationsEnum.Hamas}</option>
-        <option value={organizationsEnum.Houthis}>{organizationsEnum.Houthis}</option>
-        <option value={organizationsEnum.Hezbollah}>{organizationsEnum.Hezbollah}</option>
-        <option value={organizationsEnum.IRGC}>{organizationsEnum.IRGC}</option>
-        <option value={organizationsEnum.IDF_Center}>IDF</option>
-      </select>
-      {organization.startsWith("IDF") && <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
-          <option value={organizationsEnum.IDF_Center}>{organizationsEnum.IDF_Center}</option>
-          <option value={organizationsEnum.IDF_North}>{organizationsEnum.IDF_North}</option>
-          <option value={organizationsEnum.IDF_South}>{organizationsEnum.IDF_South}</option>
-          <option value={organizationsEnum.IDF_West_Bank}>{organizationsEnum.IDF_West_Bank}</option>
-        </select>}
-      <button onClick={send}>Register</button>
-    </div>
+    <>
+      <div className='page'>
+        <input type="text" placeholder='user name' onChange={(e)=>{setUserName(e.target.value)}} value={userName} />
+        <input type="password" placeholder='password'  onChange={(e)=>{setPassword(e.target.value)}} value={password}/>
+        <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
+          <option value={organizationsEnum.Hamas}>{organizationsEnum.Hamas}</option>
+          <option value={organizationsEnum.Houthis}>{organizationsEnum.Houthis}</option>
+          <option value={organizationsEnum.Hezbollah}>{organizationsEnum.Hezbollah}</option>
+          <option value={organizationsEnum.IRGC}>{organizationsEnum.IRGC}</option>
+          <option value={organizationsEnum.IDF_Center}>IDF</option>
+        </select>
+        {organization.startsWith("IDF") && <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
+            <option value={organizationsEnum.IDF_Center}>{organizationsEnum.IDF_Center}</option>
+            <option value={organizationsEnum.IDF_North}>{organizationsEnum.IDF_North}</option>
+            <option value={organizationsEnum.IDF_South}>{organizationsEnum.IDF_South}</option>
+            <option value={organizationsEnum.IDF_West_Bank}>{organizationsEnum.IDF_West_Bank}</option>
+          </select>}
+        <button onClick={send}>Register</button>
+      </div>
+      <button className='transfer' onClick={()=>{navigate('/login')}}>Already have an account ? Login</button>
+    </>
   )
 }
