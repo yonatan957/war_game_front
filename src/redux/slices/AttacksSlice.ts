@@ -13,7 +13,6 @@ const attacksSlice = createSlice({
   initialState,
   reducers: {
     addAttack: (state, action: PayloadAction<IAttack>) => {
-      console.log(action.payload);
       state.attacks.push(action.payload);
     },
     updateTimeLeft: (

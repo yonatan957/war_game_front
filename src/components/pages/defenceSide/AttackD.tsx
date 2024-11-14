@@ -22,7 +22,7 @@ export default function AttackD({attack}:Props) {
     const intercept = (interceptor: string) =>{        
         const token = localStorage.getItem('Dtoken');
         if(!token) return
-        socket.emit("intercept", {interceptor, token, attack:  attack._id})        
+        socket.emit("intercept", {interceptor, token, attack:  attack._id, time: attack.tymeToHit})        
     }
     const [activeIntercptors, setActiveIntercptors] = useState<string[]>(fill()); 
     useEffect(() => {        
