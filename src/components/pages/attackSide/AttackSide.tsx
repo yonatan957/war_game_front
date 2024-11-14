@@ -31,13 +31,14 @@ export default function AttackSide() {
   }
   return (
     <div className='page attackSide' >
+      <div className='page'>
       <h1>Attack Side</h1>
-      <div>
+      <div className="resurces">
         {user?.resources.map((resource) => (
-          <label key={resource.name}>
-            {resource.name}:
+          <h5 key={resource.name}>
+            {resource.name}:    
             {resource.amount}
-          </label>
+          </h5>
         ))}
       </div>
       <select onChange={(e)=>{setOrganization(e.target.value as organizationsEnum)}}>
@@ -46,10 +47,11 @@ export default function AttackSide() {
             <option value={organizationsEnum.IDF_South}>{organizationsEnum.IDF_South}</option>
             <option value={organizationsEnum.IDF_West_Bank}>{organizationsEnum.IDF_West_Bank}</option>
       </select>
-      <div>
+      <div className="resurces">
         {activeMissles.map((missle) => (
           <button key={missle} onClick={()=>{lounchMissle(missle)}}>Lonch {missle}</button>
         ))}
+      </div>
       </div>
       <div className='attacks'>
         {attackes.filter(attack => attack.id_attacker == user?._id).map((attack) => (

@@ -38,10 +38,7 @@ const attacksSlice = createSlice({
     addAttack: (state, action: PayloadAction<IAttack>) => {
       state.attacks.push(action.payload);
     },
-    updateTimeLeft: (
-      state,
-      action: PayloadAction<{ id: string; timeLeft: number }>
-    ) => {
+    updateTimeLeft: (state, action: PayloadAction<{ id: string; timeLeft: number }>) => {
       const attack = state.attacks.find(
         (attack) => attack._id === action.payload.id
       );

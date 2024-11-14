@@ -36,11 +36,18 @@ export default function AttackD({attack}:Props) {
         })
     }, [attack])
   return (
-    <div className='card cardD' style={{backgroundColor: attack.intercepted ? 'rgb(2, 136, 24)' : 'rgb(249, 86, 86)'}}>
-      <h3>{attack.name}</h3>
-      {attack.tymeToHit!==0?<h4>Time to hit:{attack.tymeToHit}</h4>:(attack.intercepted?<h4>Intercepted</h4>:<h4>Exploded</h4>)}
-      {attack.intercepted && (attack.id_intercepted == user?._id ? <h4>Intercepted by you</h4> : <h4>Intercepted by {attack.id_intercepted?.slice(0,5)}</h4>)}   
-      {!attack.intercepted && activeIntercptors.map((interceptor) => (<button onClick={()=>{intercept(interceptor)}} key={interceptor}> Lounch {interceptor}</button>))} 
+    <div className="card text-center">
+    <div className="card-header">
+      {attack.name}
+    </div>
+    <div className={`card-body ${!attack.intercepted ? 'bad' : 'good'}`}>
+       {attack.tymeToHit!==0?<h4>Time to hit:{attack.tymeToHit}</h4>:(attack.intercepted?<h4>Intercepted</h4>:<h4>Exploded</h4>)}
+       {attack.intercepted && (attack.id_intercepted == user?._id ? <h4>Intercepted by you</h4> : <h4>Intercepted by {attack.id_intercepted?.slice(0,5)}</h4>)}   
+       {!attack.intercepted && activeIntercptors.map((interceptor) => (<button onClick={()=>{intercept(interceptor)}} key={interceptor}> Lounch {interceptor}</button>))} 
+    </div>
+        <div className="card-footer text-muted">
+        keep going
+        </div>
     </div>
   )
 }

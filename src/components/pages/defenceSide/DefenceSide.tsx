@@ -16,14 +16,16 @@ export default function DefenceSide() {
   },[])
   return (
     <div className='page defenceSide'>
+      <div className="page">
       <h1>Defence Side</h1>
-      <div>
+      <div className="resurces">
         {user?.resources.map((resource) => (
-          <label key={resource.name}>
-            {resource.name}:
+          <h5 key={resource.name}>
+            {resource.name}:    
             {resource.amount}
-          </label>
+          </h5>
         ))}
+      </div>
       </div>
       <div className="attacks">
         {attackes.map((attack) => (

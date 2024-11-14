@@ -46,3 +46,16 @@ label{
 .buyButton:hover{
     box-shadow: 0px 0px 20px gold;
 }
+
+.bad{
+    background-color: rgb(238, 69, 7);
+    border-radius: 10px;
+}
+.good{
+    background-color: rgb(48, 165, 48);
+    border-radius: 10px;
+}
+.resurces{
+    display: flex;
+    gap: 10px;
+}

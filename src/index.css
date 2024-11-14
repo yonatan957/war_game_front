@@ -3,10 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(63, 63, 63, 0.87);
-  background-color: #d6c8c8;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,6 +16,7 @@
 .app{
   width: 100vw;
   height: 100vh;
+  background-color: rgb(251, 222, 183);
 }
 .nav{
   width: 100%;

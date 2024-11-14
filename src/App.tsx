@@ -51,7 +51,7 @@ function App() {
         });
     }, 1000);
     return () => clearInterval(interval);
-  }, [attacks, dispatch]);
+  }, [attacks]);
   return (
     <div className="app">
       <NavBar />
