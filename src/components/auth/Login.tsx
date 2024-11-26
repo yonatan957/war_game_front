@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { fetchLogin } from '../../redux/slices/userSlice'
 import './auth.css'
 import { useNavigate } from 'react-router-dom';
-import { socket } from '../../main';
 
 export default function Login() {
   const [userName, setUserName]= useState('');
