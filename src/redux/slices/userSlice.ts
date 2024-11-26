@@ -18,7 +18,7 @@ export const fetchLogin = createAsyncThunk(
   "user/login",
   async (userData: { userName: string; password: string }, thunkApi) => {
     try {
-      const res = await fetch("http://localhost:3030/users/login", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,7 +11,7 @@ const initialState: attacksState = {
 export const fetchAttacks = createAsyncThunk('attack/load',
   async (Data: { token: string, url: string, }, thunkApi) => {
       try {
-          const res = await fetch('http://localhost:3030/attacks/' + Data.url, {
+          const res = await fetch(`${import.meta.env.VITE_BASE_URL}/attacks/` + Data.url, {
               method: 'GET',
               headers: {
                   'Content-Type': 'application/json',

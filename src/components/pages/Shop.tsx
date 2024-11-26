@@ -10,7 +10,7 @@ export default function Shop() {
   const buy = async(missle:string) =>{
     const token = user?.attacker? localStorage.getItem('Atoken') : localStorage.getItem('Dtoken')
     if(!token) return
-    const res =await fetch('http://localhost:3030/users/buyWeapon', {
+    const res =await fetch(`${import.meta.env.VITE_BASE_URL}0/users/buyWeapon`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
